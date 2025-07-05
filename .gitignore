@@ -1,0 +1,18 @@
+# Исключаем папку с HTML-отчётами
+/reports/
+
+# Виртуальное окружение
+/venv/
+
+# Кэш pytest
+.pytest_cache/
+
+# Файлы покрытия кода
+.coverage
+htmlcov/
+
+# Бинарные и временные файлы
+*.pyc
+__pycache__/
+*.log
+.DS_Store

@@ -1,0 +1,6 @@
+pytest
+pytest-cov
+pytest-html
+pytest-xdist
+requests
+allure-pytest
