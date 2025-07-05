@@ -1,0 +1,1 @@
+2025-07-05 16:02:09,675 [INFO] POST https://fakestoreapi.com/auth/login -> 200

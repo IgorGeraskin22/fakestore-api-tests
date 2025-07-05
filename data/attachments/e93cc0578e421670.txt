@@ -1,0 +1,1 @@
+INFO     root:api_client.py:15 DELETE https://fakestoreapi.com/carts/7 -> 200

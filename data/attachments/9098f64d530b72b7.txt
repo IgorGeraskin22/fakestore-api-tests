@@ -1,0 +1,1 @@
+2025-07-05 16:02:10,825 [INFO] GET https://fakestoreapi.com/carts/1 -> 200
