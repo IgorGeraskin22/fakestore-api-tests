@@ -125,8 +125,8 @@ def test_create_order_unauthorized():
 
 - Автоматический прогон тестов при `push` и `pull request`
 - Конфигурация: `.github/workflows/tests.yml`
+- Публикацией Allure-отчёта в GitHub Pages
 - Можно расширить:
-  - публикацией Allure-отчёта в GitHub Pages (уже сделано)
   - отправкой отчётов в Telegram или Slack
 
 ---
