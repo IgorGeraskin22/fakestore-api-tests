@@ -1,6 +1,6 @@
 # 🛒 Fakestore API Tests
 
-Автоматизированные тесты на Python для REST API [Fake Store API](https://fakestoreapi.com), реализованные с использованием `pytest`, `requests` и `allure-pytest`. Проект создан как часть портфолио и демонстрирует навыки API-тестирования, работы с отчетами, структурирования кода и CI/CD.
+Автоматизированные тесты на Python для REST API [Fake Store API](https://fakestoreapi.com), реализованные с использованием `pytest`, `requests` и `allure-pytest`. Проект создан как часть портфолио и демонстрирует навыки API-тестирования, генерации отчетов, структурирования кода и CI/CD.
 
 ---
 
@@ -9,7 +9,7 @@
 - ✅ Аутентификация (успешный и неуспешный логин)
 - ✅ Получение товаров, проверка структуры и данных
 - ✅ Работа с корзиной (создание, просмотр, валидация)
-- 🧪 Отчёт в HTML (`reports/report.html`)
+- ✅ Структурированные отчёты с Allure
 - ⚙️ Готов к CI/CD (GitHub Actions)
 
 ---
@@ -53,8 +53,8 @@
    allure serve allure-results
    ```
 
-7. Просмотр HTML-отчета (если сформирован вручную):
-   Открой файл `reports/report.html` в браузере.
+7. Локальный HTML-отчёт (альтернатива):
+   Открыть `reports/report.html` в браузере.
 
 ---
 
@@ -65,40 +65,38 @@ fakestore-api-tests/
 ├── .github/                 # GitHub Actions workflows
 │   └── workflows/
 │       └── tests.yml
-├── .pytest_cache/          # кеш pytest
 ├── reports/                # Allure/HTML отчёты
 │   └── report.html
-├── tests/                  # Тесты
-│   ├── testdata/           # Тестовые данные
+├── tests/
+│   ├── testdata/
 │   ├── confest.py
 │   ├── test_auth.py
 │   ├── test_cart.py
 │   └── test_products.py
-├── utils/                  # API клиенты и вспомогательные модули
+├── utils/
 │   ├── __init__.py
 │   ├── api_client.py
 │   └── auth_api.py
-├── .coverage               # отчёт покрытия
-├── .gitignore
-├── api_client.log          # лог запросов
-├── pytest.ini              # конфигурация Pytest
-├── requirements.txt        # зависимости
-├── start.py                # точка входа (при необходимости)
-└── README.md
+├── start.py
+├── requirements.txt
+├── pytest.ini
+├── README.md
 ```
 
 ---
 
-## 📊 Отчёты
+## 📊 Allure отчёт
 
-- Allure:
-  ```bash
-  pytest --alluredir=allure-results
-  allure serve allure-results
-  ```
+В отчёте отображаются:
 
-- HTML:
-  Открой файл `reports/report.html`
+- Общая статистика по тестам
+- Разделение по функционалу (авторизация, корзина, товары)
+- Сюжеты (Stories) и признаки (Features)
+- Графики и тренды успешности
+
+![Allure report overview](https://raw.githubusercontent.com/IgorGeraskin22/fakestore-api-tests/main/reports/allure_screenshot_example.png)
+
+> 🔽 *Изображение выше — пример. В реальном README нужно положить скриншот `png` рядом с `README.md`, например: `reports/allure_screenshot_example.png`*
 
 ---
 
@@ -107,16 +105,16 @@ fakestore-api-tests/
 - 🐍 Python 3.8+
 - ✅ Pytest
 - 🌐 Requests
-- 📋 Allure
+- 📋 Allure (allure-pytest)
 - ☁️ GitHub Actions (CI/CD)
 
 ---
 
 ## ➕ Как добавить новый тест
 
-1. Создай новый файл в `tests/` (например, `test_orders.py`)
-2. Импортируй `send_request()` или готовый API-модуль
-3. Используй аннотации `@allure.feature`, `@allure.story`
+1. Создай файл `test_<модуль>.py` в `tests/`
+2. Импортируй клиент из `utils/api_client.py` или `auth_api.py`
+3. Оформи тест с `@allure.feature` и `@allure.story`
 
 Пример:
 ```python
@@ -124,7 +122,7 @@ import allure
 from utils.api_client import send_request
 
 @allure.feature("Orders")
-@allure.story("Create order without auth")
+@allure.story("Unauthorized order creation")
 def test_create_order_unauthorized():
     response = send_request("POST", "/orders", json={})
     assert response.status_code == 401
@@ -134,9 +132,11 @@ def test_create_order_unauthorized():
 
 ## 🔄 CI/CD (GitHub Actions)
 
-Тесты автоматически запускаются при каждом push. Отчёт можно расширить до публикации в Telegram или GitHub Pages.
+- Автозапуск тестов при push
+- Генерация отчёта
+- Возможна интеграция с Telegram и GitHub Pages
 
-Конфигурация:
+Файл:
 ```
 .github/workflows/tests.yml
 ```
@@ -153,5 +153,7 @@ def test_create_order_unauthorized():
 ## 👤 Автор
 
 **Игорь Гераскин — QA Engineer**  
-📧 igor.geraskin@example.com  
-💼 [hh.ru/твоя-ссылка](https://hh.ru)
+📧 alonigor16@gmail.com
+💼 https://t.me/IgStrive
+
+---
